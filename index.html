@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Play a Game?</title>
+    <style>
+        body {
+            background-color: #ffccdc; /* Light pink background */
+            background-image: url('pattern.avif'); /* Replace with your image path */
+            background-size: cover; /* Cover the entire background */
+            background-repeat: no-repeat; /* Prevent repeating the image */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        img {
+            width: 200px; /* Adjust size of the bear GIF */
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 18px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #ff9aab; /* Slightly darker pink on hover */
+        }
+
+        .hidden {
+            display: none; /* Hide elements initially */
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" id="container">
+    <img src="BEAR.gif" alt="Cute Bear GIF"> <!-- Replace with your bear GIF link -->
+    <h3 id="question">I dont know how to say this both on text or in person so I made all of this instead <br>
+    I like you, I was really looking forward to going out but you didnt want to <br>
+    So instead of telling u this in person when we went out, i made this <br>
+    for now, enjoy the game I made for you <br>
+    then at the end a message will pop up explaining everything <br>
+    are you open to the idea?
+    </h3>
+
+    <div id="buttons0">
+        <button class="yes" onclick="askGame()">I'm open to the idea</button>
+        <button class="no" onclick="alert(Message2)">No,ew</button>
+    </div>
+
+    <div id="buttons1" class="hidden">
+        <button class="yes" onclick="askLike()">Yes</button>
+        <button class="maybe" onmouseover="moveButton(this)">Maybe</button>
+        <button class="no" onmouseover="moveButton(this)">No</button>
+    </div>
+    
+    <div id="buttons2" class="hidden">
+        <button class="yes" onclick="askLove()">Yes</button>
+        <button class="no" onmouseover="moveButton(this)">No</button>
+    </div>
+    
+    <div id="buttons3" class="hidden">
+        <button class="yes" onclick="finalResponse('love','show')">Yes</button>
+        <button class="no" onclick="finalResponse('no')">No</button>
+        <button class="too-soon" onclick="finalResponse('too-soon','show')">Too Soon</button>
+    </div>
+
+    <div id="endMessage" class="hidden">
+        <h3>Thank you for playing the game! <br>
+            I understand you dont want to get into a relationship <br>
+            And I understand that you want to focus on school <br>
+            But I think that if those two things are the only things holding you back <br>
+            Then if you just go out with me, we can talk things out <br>
+            If its still a no even after the date then I will respect your decision <br>
+            But think about it, the worst is that you get a free date to somewhere nice and you can just say no in person <br>
+            Lets just go out and sort things out, text me your final choice whether or not you wanna talk things out in person on instagram <br>
+        </h3>
+    </div>
+        
+</div>
+
+<script>
+    Message2 = "Trust me just play the game, read the message at the end, and if your answer is still no, then thats okay <3";
+
+    function askGame() {
+        document.getElementById('question').innerText = "Do you want to play a game?(It's very fun *wink wink*)";
+        document.getElementById('buttons0').classList.add('hidden');
+        document.getElementById('buttons1').classList.remove('hidden');
+    }
+
+    function moveButton(button) {
+        const offsetX = Math.random() * 300 - 100; // Random horizontal offset
+        const offsetY = Math.random() * 300 - 100; // Random vertical offset
+        button.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+    }
+
+    function askLike() {
+        document.getElementById('question').innerText = "Do you like me?";
+        document.getElementById('buttons1').classList.add('hidden');
+        document.getElementById('buttons2').classList.remove('hidden');
+    }
+
+    function askLove() {
+        document.getElementById('question').innerText = "Do you love me?";
+        document.getElementById('buttons2').classList.add('hidden');
+        document.getElementById('buttons3').classList.remove('hidden');
+    }
+
+    function finalResponse(answer, action) {
+        let message;
+        if (answer === 'love') {
+            message = "I LOVE YOU MORE!";
+        } else if (answer === 'no') {
+            message = "WRONG ANSWER TRY AGAIN!";
+        } else {
+            message = "That's Okay! We can take our time.";
+        }
+        alert(message);
+        if (action == 'show') {
+            document.getElementById('question').classList.add('hidden');
+            document.getElementById('buttons3').classList.add('hidden');
+            document.getElementById('endMessage').classList.remove('hidden');
+        }
+    }
+</script>
+
+</body>
+</html>
